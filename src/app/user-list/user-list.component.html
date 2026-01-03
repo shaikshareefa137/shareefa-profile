@@ -1,28 +1,19 @@
-<h2 class="text-center text-primary my-4">User List</h2>
+<h2>Users</h2>
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered shadow">
-    <thead class="table-primary">
-      <tr>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Company</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.name }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.email }}</td>
-        <td>
-          {{ user.address.street }}, {{ user.address.suite }}, 
-          {{ user.address.city }}, {{ user.address.zipcode }},
-          Lat: {{ user.address.geo?.lat }}, Lng: {{ user.address.geo?.lng }}
-        </td>
-        <td>{{ user.company.name }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<p *ngIf="loading">Loading...</p>
+
+<table *ngIf="!loading" border="2" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>City</th>
+    <th>Company</th>
+  </tr>
+
+  <tr *ngFor="let user of users">
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.address.city }}</td>
+    <td>{{ user.company.name }}</td>
+  </tr>
+</table>
